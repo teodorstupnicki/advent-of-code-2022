@@ -13,6 +13,7 @@ fn main() {
         };
     }
     v.sort();
+    
     let max0 = v.pop().unwrap();
     let max1 = v.pop().unwrap();
     let max2 = v.pop().unwrap();
