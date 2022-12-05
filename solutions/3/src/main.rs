@@ -5,8 +5,15 @@ fn main() {
     let mut sum = 0;
     let mut common: char = 'x';
     let mut key_map = HashMap::new();
-    for line in content.lines() {
-        let length = line.len();
+    for (i, line) in content.lines().enumerate() {
+        find_commons(&mut key_map, line, &mut sum)
+    }
+    println!("Sum: {0}", sum);
+}
+
+fn find_commons(key_map: &mut HashMap<char, i32>, line: &str, sum: &mut i32) {
+    let mut common: char = 'x';
+    let length = line.len();
         let left = &line[..length/2];
         let right = &line[length/2..length];
         for c in left.chars() {
@@ -26,13 +33,12 @@ fn main() {
         }
         key_map.clear();
         println!("Char: {0}", common);
+        // println!("Index: {0}", i);
         if common.is_uppercase() {
-            sum += common as u32 - 'A' as u32 + 27;
+            *sum += (common as u32 - 'A' as u32) as i32 + 27;
             println!("Digit: {0}", common as u32 - 'A' as u32 + 27);
         } else {
-            sum += common as u32 - 'a' as u32 + 1;
+            *sum += (common as u32 - 'a' as u32) as i32 + 1;
             println!("Digit: {0}", common as u32 - 'a' as u32 + 1);
         }
-    }
-    println!("Sum: {0}", sum);
 }
