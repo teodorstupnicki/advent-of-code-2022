@@ -25,10 +25,14 @@ fn main() {
             }
         }
         key_map.clear();
-        println!("Left: {0}", left);
-        println!("Right: {0}", right);
         println!("Char: {0}", common);
-
-        println!("Digit: {0}", common as u32 - 'a' as u32 );
+        if common.is_uppercase() {
+            sum += common as u32 - 'A' as u32 + 27;
+            println!("Digit: {0}", common as u32 - 'A' as u32 + 27);
+        } else {
+            sum += common as u32 - 'a' as u32 + 1;
+            println!("Digit: {0}", common as u32 - 'a' as u32 + 1);
+        }
     }
+    println!("Sum: {0}", sum);
 }
