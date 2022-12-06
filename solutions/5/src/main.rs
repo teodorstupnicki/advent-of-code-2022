@@ -35,10 +35,12 @@ fn main() {
         let n = arr[1].parse::<i32>().unwrap();
         let src = arr[3].parse::<usize>().unwrap() - 1;
         let dest = arr[5].parse::<usize>().unwrap() - 1;
+        let mut v:Vec<char> = Vec::new();
         for _ in 0..n {
             let tmp = stacks[src].pop().unwrap();
-            stacks[dest].push(tmp);
+            v.insert(0, tmp);
         }
+        stacks[dest].append(&mut v);
     }
     println!("n = {0}", n);
     for stack in stacks {
