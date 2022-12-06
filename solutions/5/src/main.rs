@@ -11,7 +11,7 @@ fn main() {
         }
     }
     let mut stacks: Vec<Vec<char>> = Vec::new();
-    for i in 0..n {
+    for _ in 0..n {
         stacks.push(Vec::new());
     }
     for line in contents.lines() {
@@ -42,7 +42,6 @@ fn main() {
         }
         stacks[dest].append(&mut v);
     }
-    println!("n = {0}", n);
     for stack in stacks {
         print!("{0}", stack.last().unwrap());
     }
