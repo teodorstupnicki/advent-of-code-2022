@@ -10,6 +10,38 @@ fn main() {
             break;
         }
     }
+    let mut stacks: Vec<Vec<char>> = Vec::new();
+    for i in 0..n {
+        stacks.push(Vec::new());
+    }
+    for line in contents.lines() {
+        if line.contains("1") {
+            break;
+        }
+        let chars: Vec<char> = line.chars().collect();
+        for i in 0..n {
+            let temp = &mut stacks[i as usize];
+            let ch = chars[(1+i*4) as usize];
+            if ch != ' ' {
+                temp.insert(0, ch);
+            }
+        }
+    }
+    for line in contents.lines() {
+        if !line.contains("move") {
+            continue;
+        }
+        let arr: Vec<&str> = line.split(" ").collect();
+        let n = arr[1].parse::<i32>().unwrap();
+        let src = arr[3].parse::<usize>().unwrap() - 1;
+        let dest = arr[5].parse::<usize>().unwrap() - 1;
+        for _ in 0..n {
+            let tmp = stacks[src].pop().unwrap();
+            stacks[dest].push(tmp);
+        }
+    }
     println!("n = {0}", n);
-    
+    for stack in stacks {
+        print!("{0}", stack.last().unwrap());
+    }
 }
