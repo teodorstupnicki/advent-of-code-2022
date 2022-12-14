@@ -10,7 +10,6 @@ fn main() {
                 if j != k && chars[i-j] == chars[i-k] {
                     flag = false;
                 }
-
             }
         }
         if flag {
